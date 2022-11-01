@@ -1,8 +1,8 @@
 import PetsListNav from "./PetsListNav";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Pet from "./Pet";
 import "./PetsList.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const PetsList = ({ pets }) => {
   let { kind } = useParams();
@@ -15,6 +15,12 @@ export const PetsList = ({ pets }) => {
     },
     [[], []]
   );
+
+  useEffect(() => {
+    if (kind === undefined) {
+      navigate("/pets/cats");
+    }
+  }, []);
 
   return (
     <section className="pets-wrapper">
